@@ -5,25 +5,26 @@
     "use strict";
 
     angular.module("esri-app", ["esri.map"])
-        .controller("AppController", ["Map", "MapImageLayer", "$scope", function (Map, MapImageLayer, $scope) {
+        .controller("AppController", ["esriLoader", "$scope", function (esriLoader, $scope) {
+            var url = "http://services.arcgisonline.com/arcgis/rest/services/World_Terrain_Base/MapServer";
             var vm = $scope.vm = {
                 options: {
                     zoom: 4
                 }
             };
 
-            Map.create().then(function (result) {
-                var layer = {};
+            esriLoader.require(["esri/Map", "esri/layers/MapImageLayer", "esri/layers/TileLayer"]).then(function (modules) {
+                var Map = modules[0];
+                var MapImageLayer = modules[1];
+                var TileLayer = modules[2];
 
-                MapImageLayer.create().then(function (result) {
-                    layer = new result.MapImageLayer({
-                        url: "https://sampleserver6.arcgisonline.com/arcgis/rest/services/Census/MapServer"
-                    });
-                }).then(function () {
-                    vm.map = new result.Map({
-                        layers: [layer]
-                    });
-                })
-            });
+                var layer = new TileLayer({
+                    url: url
+                });
+
+                vm.map = new Map({
+                    layers: [layer]
+                });
+            })
         }]);
 })(angular);
