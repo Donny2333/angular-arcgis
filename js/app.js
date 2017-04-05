@@ -10,7 +10,15 @@
             var vm = $scope.vm = {
                 options: {
                     zoom: 4
-                }
+                },
+                map: null,
+                view: null,
+                viewLoaded: false
+            };
+
+            vm.onViewCreated = function (view) {
+                vm.view = view;
+                vm.viewLoaded = true;
             };
 
             esriLoader.require(["esri/Map", "esri/layers/MapImageLayer", "esri/layers/TileLayer"]).then(function (modules) {
@@ -25,6 +33,6 @@
                 vm.map = new Map({
                     layers: [layer]
                 });
-            })
+            });
         }]);
 })(angular);

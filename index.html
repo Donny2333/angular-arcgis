@@ -16,6 +16,8 @@
     <script src="build/bundle.js"></script>
 </head>
 <body ng-app="esri-app" ng-controller="AppController">
-<esri-map-view map="vm.map" view-options="vm.options"></esri-map-view>
+<esri-map-view map="vm.map" view-options="vm.options" on-create="vm.onViewCreated">
+    <esri-home-button view="vm.view" view-ui-position="{position: 'top-left'}" ng-show="vm.viewLoaded"></esri-home-button>
+</esri-map-view>
 </body>
 </html>
