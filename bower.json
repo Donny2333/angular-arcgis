@@ -1,0 +1,22 @@
+{
+  "name": "angular-arcgis",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Donny"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "build"
+  ],
+  "dependencies": {
+    "angular-esri-map": "^2.0.3",
+    "angular": "^1.6.3"
+  }
+}
